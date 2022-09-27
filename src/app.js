@@ -29,6 +29,7 @@ app.use(cors())
 app.use(xss())
 
 //Routes
+app.get('/heartbeat', (req, res)=>res.send('Server alive!'))
 app.use('/api/v1/todos', authenticate, todoRouter)
 app.use('/api/v1/auth', authRouter)
 
