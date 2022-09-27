@@ -20,7 +20,12 @@ const server = http.createServer(app)
 const connect_start = async () => {
     try {
         await connectMongoDB(process.env.MONGO_CONN_STRING)
-        server.listen(PORT_REST, console.log(`Restful Server is running at http://localhost:${PORT_REST}`))
+        // server.listen(PORT_REST, console.log(`Restful Server is running at http://localhost:${PORT_REST}`))
+        const {PORT_REST, LOCAL_ADDRESS = '0.0.0.0'} = process.env
+        server.listen(PORT_REST, LOCAL_ADDRESS, () => {
+            const address = server.address();
+            console.log('Restful Server is running at', address);
+        })
         // graphServer.listen(PORT_GRAPH, console.log(`GraphQL Server is running at http://localhost:${PORT_GRAPH}`))
     } catch (error) {
         console.log(error);
@@ -28,3 +33,4 @@ const connect_start = async () => {
 }
 
 connect_start()
+
