@@ -4,7 +4,7 @@ const {ApolloServer} = require('apollo-server')
 const connectMongoDB = require('./db/connectMongoDB')
 require('dotenv').config()
 
-const PORT_REST = process.env.PORT_REST || 8008
+const PORT = process.env.PORT || 8008
 const PORT_GRAPH = process.env.PORT_GRAPH || 5005
 //listening with http instead of just express to isolate server and express code.
 //Express code is in app.js
